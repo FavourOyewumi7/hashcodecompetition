@@ -1,4 +1,5 @@
-photo_objs = []
+vertical_photo_objs = []
+horizontal_photo_objs = []
 
 class Slides:
     def __init__(self):
@@ -29,6 +30,11 @@ class Photo:
     def __repr__(self):
         return "Photo {0.id}:,  Orientation: {0.orientation}, Tag Number: {0.tag_num}, Tags: {0.tags}".format(self)
 
+def is_horizontal(photo):
+    if photo.orientation == "H":
+        return True
+    return False
+
 def parser(filename):
     with open(filename, "r") as file:
         photo_num = file.readline()
@@ -38,7 +44,10 @@ def parser(filename):
             tag_num = photo_details[1]
             tags = photo_details[2:]
             photo = Photo(orientation, tag_num, tags)
-            photo_objs.append(photo)
+            if is_horizontal(photo):
+                horizontal_photo_objs.append(photo)
+            else:
+                vertical_photo_objs.append(photo)
 
 
 
