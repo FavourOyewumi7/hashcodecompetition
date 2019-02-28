@@ -1,0 +1,2 @@
+- Create slides class
+- Create photo class
